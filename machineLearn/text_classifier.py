@@ -2,6 +2,8 @@
 
 import pandas as pd
 import numpy as np
+import nltk
+#nltk.download('stopwords') # If I want download the stio wiords
 
 from sklearn.svm import LinearSVC
 from sklearn.cross_validation import cross_val_score
@@ -43,9 +45,13 @@ if __name__ == '__main__':
     # set(), to no repeat words (conjunto in portuguese)
     words = set()
 
+    # Removing the stop words, that do not help the classifier
+    stopwords = nltk.corpus.stopwords.words('portuguese')
+
     # For each word in broken_texts, I'll put only news into words
-    for word in broken_texts:
-        words.update(word)
+    for word_list in broken_texts:
+        valid_words = [word for word in word_list if word not in stopwords]
+        words.update(valid_words)
 
     # Mapping every word to a respective number
     tuplas = zip(words, xrange(len(words)))
@@ -54,7 +60,6 @@ if __name__ == '__main__':
     dictionary = {word:index for word, index in tuplas}
 
     counted_texts_vectors = [vectorize_text(text, dictionary) for text in broken_texts]
-
 
     # Adapting to the recognizer pattern
     X = counted_texts_vectors
