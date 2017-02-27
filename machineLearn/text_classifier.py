@@ -14,8 +14,9 @@ if __name__ == '__main__':
 
     classifiers = pd.read_csv('emails.csv')
 
-    # Getting the column email
+    # Getting the column email and the results of the destiny group to receive that email
     texts = classifiers['email']
+    markers = classifiers['classificacao']
 
     # Apply to lower function to not distinct case sensitive words
     texts = texts.str.lower()
@@ -37,5 +38,20 @@ if __name__ == '__main__':
     dictionary = {word:index for word, index in tuplas}
 
     counted_texts_vectors = [vectorize_text(text, dictionary) for text in broken_texts]
+    
 
-    print counted_texts
+    # Adapting to the recognizer pattern
+    X = counted_texts_vectors
+    Y = markers
+
+    # Separating training and validation
+    training_percentage = 0.8
+
+    len_training = training_percentage * len(Y)
+    len_validation = len(Y) - len_training
+
+    training_data = X[0:len_training]
+    training_marker = Y[0:len_training]
+
+    validation_data = X[len_training:]
+    validation_marker = Y[len_training:]
