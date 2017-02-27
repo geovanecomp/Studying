@@ -16,14 +16,28 @@ if __name__ == '__main__':
     broken_texts = texts.str.split(' ')
 
     # set(), to no repeat words (conjunto in portuguese)
-    dictionary = set()
+    words = set()
 
-    # For each word in broken_texts, I'll put only news into dictionary
+    # For each word in broken_texts, I'll put only news into words
     for word in broken_texts:
-        dictionary.update(word)
-
-
-    number_of_words = len(dictionary)
+        words.update(word)
 
     # Mapping every word to a respective number
-    zip(dictionary, xrange(number_of_words))
+    number_of_words = len(words)
+    tuplas = zip(words, xrange(number_of_words))
+
+    # Making a dictionary
+    dictionary = {word:index for word, index in tuplas}
+
+    word_counter = [0] * number_of_words
+    # word_counter = {}
+
+    for text in broken_texts:
+        for word in text:
+            print word
+            index = dictionary[word]
+            print index
+            word_counter[index] += 1
+
+
+    print word_counter
