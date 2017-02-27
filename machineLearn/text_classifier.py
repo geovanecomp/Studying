@@ -28,7 +28,7 @@ def vectorize_text(text, dictionary):
 
 def fit_and_predict(model_name, model, training_data, training_marker, number_of_folds):
     # fit, predict and apply the folds
-    scores = cross_val_score(model, training_data, training_marker, cv=number_of_folds)    
+    scores = cross_val_score(model, training_data, training_marker, cv=number_of_folds)
     avg_success_rate = np.mean(scores)
 
     return avg_success_rate
@@ -103,4 +103,3 @@ if __name__ == '__main__':
     print results
 
     print '\n\nThe best model was: ', max(results, key=results.get), ': ', results[max(results, key=results.get)]
-    print multinomial_model
