@@ -1,6 +1,6 @@
 function validateWeight(weight) {
 
-    if (weight <= 0 || weight >= 300) {
+    if (weight <= 0 || weight >= 300 || weight.length === 0) {
         return false
     }
 
@@ -8,7 +8,7 @@ function validateWeight(weight) {
 }
 function validateHeight(height) {
 
-    if (height <= 0 || height >= 3) {
+    if (height <= 0 || height >= 3 || height.length === 0) {
         return false
     }
 

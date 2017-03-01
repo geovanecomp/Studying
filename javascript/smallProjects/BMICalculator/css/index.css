@@ -136,3 +136,8 @@ button[disabled=disabled], button:disabled {
 .invalid-pacient{
 	background-color: lightcoral
 }
+
+#errors-messages{
+	color: red;
+	padding: 0 0 10px 0;
+}
