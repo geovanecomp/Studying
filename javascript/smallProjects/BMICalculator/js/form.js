@@ -11,11 +11,7 @@ addButton.addEventListener('click', function(event) {
         return;
     }
 
-    let patientTr = createTrPatient(patient)
-
-    tablePatients = document.querySelector('#table-patients')
-
-    tablePatients.appendChild(patientTr)
+    addPatientIntoTable(patient)
 
     form.reset()
 
@@ -24,6 +20,14 @@ addButton.addEventListener('click', function(event) {
 
 
 })
+
+function addPatientIntoTable(patient) {
+    let patientTr = createTrPatient(patient)
+
+    tablePatients = document.querySelector('#table-patients')
+
+    tablePatients.appendChild(patientTr)
+}
 
 function createPatient(form) {
     let patient = {
