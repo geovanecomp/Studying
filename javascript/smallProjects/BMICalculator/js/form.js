@@ -39,6 +39,7 @@ function createPatient(form) {
 
 function createTrPatient(patient) {
     let patientTr   = document.createElement('tr')
+    patientTr.classList.add('patient')
 
     patientTr.appendChild(createTd(patient.name.value, 'info-name' ))
     patientTr.appendChild(createTd(patient.weight.value, 'info-weight'))

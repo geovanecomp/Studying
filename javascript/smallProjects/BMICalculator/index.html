@@ -9,7 +9,6 @@
 
 	</head>
 	<body>
-
 		<header>
 			<div class="container">
 				<h1 class="title">BMI Calculator</h1>
@@ -18,7 +17,8 @@
 		<main>
 			<section class="container">
 				<h2>My Patients</h2>
-
+				<label for="table-filter">Name: </label>
+				<input type="text" name="filter" id="table-filter" placeholder="Type the name of patient">
 				<table>
 					<thead>
 						<tr>
@@ -72,7 +72,7 @@
 				</table>
 			</section>
 			<section class="container">
-				<h2 id="title-form">Adicionar novo paciente</h2>
+				<h2 id="title-form">Add new patient</h2>
 				<ul id="errors-messages"></ul>
 				<form id="form-add-patient">
 					<div class="">
@@ -101,6 +101,7 @@
 	<script src="js/bmiCalculator.js"></script>
 	<script src="js/form.js"></script>
 	<script src="js/removePatient.js"></script>
+	<script src="js/filterPatient.js"></script>
 
 	</body>
 </html>
