@@ -31,3 +31,15 @@
     display: flex;
     /*justify-content: space-around;*/
 }
+
+.rodapePrincipal-navMap-list {
+    display: flex;
+    /*flex-direction: column;
+    flex-wrap: wrap;*/
+    flex-flow: column wrap;
+    height: 250px;
+}
+
+/*.rodapePrincipal-navMap-list .rodapePrincipal-navMap-link {
+    display: flex;
+}*/
