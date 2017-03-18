@@ -37,7 +37,7 @@ function novaLinha(usuario){
     let colunaRemover = $('<td>');
 
     let link = $('<a>').addClass('botao-remover').attr('href', '#')
-    let icone = $('<i>').addClass('small').addClass('material-icons').text('delete')
+    let icone = $('<i>').addClass('material-icons').text('delete')
 
     link.append(icone);
 
@@ -68,7 +68,7 @@ function mostraPlacar(){
     // $('.placar').toggle()
 
     // slideToogle descera ou subira de maneira suave
-    $('.placar').slideToogle(600)
+    $('.placar').slideToggle(600)
 }
 
 $('.botao-remover').click(removeLinha)

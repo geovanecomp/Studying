@@ -7,9 +7,15 @@ $(document).ready(function() {
     atualizaTamanhoFrase()
     inicializaContadores()
     inicializaCronometro()
+    inicializaMarcadores()
 
     $('#botao-reiniciar').click(reiniciaJogo)
 })
+
+function atualizaTempoInicial(tempo) {
+    $('#tempo-digitacao').text(tempo)
+    tempoInicial = tempo
+}
 
 function atualizaTamanhoFrase() {
     let frase = $('.frase').text()
@@ -51,14 +57,17 @@ function finalizaJogo() {
     inserePlacar()
 }
 
-let frase = $('.frase').text()
-campo.on('input', function() {
-    let digitado = campo.val();
-    let comparavel = frase.substr(0, digitado.length)
-    let estaCorreto = (frase.startsWith(digitado))
-    campo.toggleClass('borda-verde', estaCorreto)
-    campo.toggleClass('borda-vermelha', !estaCorreto)
-})
+
+function inicializaMarcadores() {
+    campo.on('input', function() {
+        let frase = $('.frase').text()
+        let digitado = campo.val();
+        let comparavel = frase.substr(0, digitado.length)
+        let estaCorreto = (frase.startsWith(digitado))
+        campo.toggleClass('borda-verde', estaCorreto)
+        campo.toggleClass('borda-vermelha', !estaCorreto)
+    })
+}
 
 function reiniciaJogo() {
     campo.attr('disabled', false)
