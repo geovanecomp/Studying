@@ -1,3 +1,7 @@
+$('.botao-remover').click(removeLinha)
+$('#botao-placar').click(mostraPlacar)
+$('#botao-sync').click(sincronizaPlacar)
+
 function inserePlacar() {
     let usuario = novoUsuario()
     let corpoTabela = $('.placar').find('tbody')
@@ -71,5 +75,43 @@ function mostraPlacar(){
     $('.placar').slideToggle(600)
 }
 
-$('.botao-remover').click(removeLinha)
-$('#botao-placar').click(mostraPlacar)
+function sincronizaPlacar() {
+    let placar = []
+    // Todas as linhas que sao filhas diretas de tbody
+    let linhas = $('tbody>tr')
+    linhas.each(function() {
+        // Obtendo os filhos atraves do seletor css
+        let usuario = $(this).find('td:nth-child(1)').text()
+        let palavras = $(this).find('td:nth-child(2)').text()
+
+        let score = {
+            usuario: usuario,
+            pontos: palavras
+        }
+
+        placar.push(score)
+    })
+
+    let dados = {
+        placar: placar
+    }
+
+    $.post('http://localhost:3000/placar', dados, function() {
+        console.log('Salvando log no servidor');
+    })
+}
+
+function atualizaPlacar() {
+    $.get('http://localhost:3000/placar', function(data){
+        console.log(data);
+        $(data).each(function() {
+            let usuario = {
+                nome: this.usuario,
+                palavrasDigitadas: this.pontos
+            }
+            let linha = novaLinha(usuario)
+            linha.find('.botao-remover').click(removeLinha)
+            $('tbody').append(linha)
+        })
+    })
+}
