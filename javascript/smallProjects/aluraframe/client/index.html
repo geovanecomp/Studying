@@ -10,11 +10,8 @@
 <body class="container">
 
     <h1 class="text-center">Negociações</h1>
-
-    <div id="mensagemView"></div>
-
-    <!-- <form class="form" onsubmit="negociacaoController.adiciona(event)"> -->
-    <form class="form">
+    
+    <form class="form" onsubmit="negociacaoController.adiciona(event)">
 
         <div class="form-group">
             <label for="data">Data</label>
@@ -45,7 +42,7 @@
     <br>
     <br>
 
-    <table>
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>DATA<th>
@@ -63,18 +60,10 @@
         </tfoot>
     </table>
 
-    <script src="js/app/models/Negociacao.js "></script>
+    <script src="js/app/models/Negociacao.js"></script>
+    <script src="js/app/controllers/NegociacaoController.js"></script>
     <script>
-        // Ao usar let, as variaveis ganham escopo, diferente de var que se tornam
-        // de acesso global
-        let n1 = new Negociacao(new Date(2000, 02, 30), 10, 200.5)
-        
-        console.log(n1.data)
-        console.log(n1.quantidade)
-        console.log(n1.valor)
-        console.log(n1.volume)
-
-
+        let negociacaoController = new NegociacaoController()
     </script>
 
 </body>
