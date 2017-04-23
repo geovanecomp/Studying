@@ -4,7 +4,7 @@ class NegociacoesView extends View{
         super(elemento)
     }
 
-    _template(model) {
+    template(model) {
         // Com template string, nao preciso concatenar quebras de linhas como
         // como seria se estivesse usando aspas simples
         return `
