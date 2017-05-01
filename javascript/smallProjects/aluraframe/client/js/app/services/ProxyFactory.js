@@ -11,8 +11,7 @@ class ProxyFactory {
             // Deve haver um return
             get(target, prop, receiver) {
                 if (props.includes(prop) && ProxyFactory._ehFuncao(target[prop])) {
-                    return function() {
-                        console.log('Interceptando');
+                    return function() {                        
                         Reflect.apply(target[prop], target, arguments)
                         return acao(target)
                     }
@@ -24,7 +23,6 @@ class ProxyFactory {
             set(target, prop, value, receiver) {
 
                 if (props.includes) {
-                    console.log('dentro do if set');
                     acao(target)
                 }
 
