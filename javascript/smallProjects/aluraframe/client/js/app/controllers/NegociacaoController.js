@@ -11,20 +11,15 @@ class NegociacaoController {
         // não muda conforme o contexto.
         // Ou seja, o escopo da arrow function nao ira mudar ao longo do tempo
 
-        this._listaNegociacoes = ProxyFactory.create(
-            new ListaNegociacoes(), ['adiciona', 'esvazia'], (model) => {
-                this._negociacoesView.update(model)
-            })
+        this._listaNegociacoes = new Bind(new ListaNegociacoes(),
+             new NegociacoesView($('#negociacoesView')),
+            'adiciona', 'esvazia'
+        )
 
-        this._mensagem = ProxyFactory.create(
-            new Mensagem(), ['texto'], model => this._mensagemView.update(model))
-
-
-        this._negociacoesView = new NegociacoesView($('#negociacoesView'))
-        this._mensagemView = new MensagemView($('#mensagemView'))
-
-        this._negociacoesView.update(this._listaNegociacoes)
-        // this._mensagemView.update(this._mensagemView)
+        this._mensagem = new Bind(new Mensagem(),
+            new MensagemView($('#mensagemView')),
+            'texto'
+        )
     }
 
     adiciona(event) {
@@ -38,7 +33,7 @@ class NegociacaoController {
 
     apaga() {
         this._listaNegociacoes.esvazia()
-        this._mensagem.texto = "Negociações apagadas com sucesso"        
+        this._mensagem.texto = "Negociações apagadas com sucesso"
     }
 
     _criaNegociacao() {
@@ -55,5 +50,44 @@ class NegociacaoController {
         this._inputValor.value = 0.0
 
         this._inputData.focus()
+    }
+
+    importaNegociacoes() {
+        let service = new NegociacaoService()
+
+        service.obterNegociacoesDaSemana((erro, negociacoes) => {
+            //Metodologia erros first
+            if (erro) {
+                this._mensagem.texto = erro
+                return
+            }
+
+            negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+
+            service.obterNegociacoesDaSemanaAnterior((erro, negociacoes) => {
+                //Metodologia erros first
+                if (erro) {
+                    this._mensagem.texto = erro
+                    return
+                }
+
+                negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+                
+                service.obterNegociacoesDaSemanaRetrasada((erro, negociacoes) => {
+                    //Metodologia erros first
+                    if (erro) {
+                        this._mensagem.texto = erro
+                        return
+                    }
+
+                    negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+                    this._mensagem.texto = 'Negociações importadas com sucesso.'
+                })
+            })
+        })
+
+
+
+
     }
 }

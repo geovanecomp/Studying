@@ -3,7 +3,7 @@ class ProxyFactory {
 
     static create(objeto, props, acao) {
 
-        return new Proxy(new ListaNegociacoes(), {
+        return new Proxy(objeto, {
             //get eh sempre chamado, toda vez que eu ler qualquer proprie
             //target: referencia ao objeto original
             //prop: a propriedade que esta sendo acessada
@@ -20,10 +20,11 @@ class ProxyFactory {
 
                 return Reflect.get(target, prop, receiver)
             },
-            
+
             set(target, prop, value, receiver) {
 
                 if (props.includes) {
+                    console.log('dentro do if set');
                     acao(target)
                 }
 
