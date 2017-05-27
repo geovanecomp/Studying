@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script src="js/app/models/Negociacao.js"></script>
+        <script>
+        console.log('teste gege');
+            let connection;
+
+            //Parametros: nome, versao do banco
+            // A versao eh utilizada para criar ou nao o banco.
+            let openRequest = window.indexedDB.open('aluraframe', 3)
+
+            openRequest.onupgradeneeded = e => {
+                console.log('Cria ou altera o banco ja existente');
+
+                let myConnection = e.target.result;
+
+                if (myConnection.objectStoreNames.contains('negociacoes')) {
+                    console.log('connection antes:', myConnection);
+                    myConnection.deleteObjectStore('negociacoes')
+                    console.log('connection depois:', myConnection);
+                }
+
+                //Setando que o id dos registros ao cadastrar serao do tipo AI
+                myConnection.createObjectStore('negociacoes', {
+                    autoIncrement: true
+                })
+
+                // object store seria uma tabela de um banco de dados relacional,
+                // mas a object store nao possui um schema, ou seja, pode gravar
+                // qualquer dado, desde que seja um objeto valido em javascript
+
+            }
+
+            openRequest.onsuccess = e => {
+                console.log('Conexao obtida com sucesso');
+
+                // result eh um iddatabase
+                connection = e.target.result;
+            }
+
+            openRequest.onerror = e => {
+                console.log(e.target.error);
+            }
+
+            function adiciona() {
+                //Parametro: meu object store e o tipo de transacao
+                let transaction = connection.transaction(['negociacoes'], 'readwrite')
+
+                //Atraves da store posso realizar as operacoes de persistência
+                let store = transaction.objectStore('negociacoes')
+
+                let negociacao = new Negociacao(new Date(),1,200)
+
+                //Add para adicionar o objeto a store, retornando uma requisicao
+                let request = store.add(negociacao)
+
+                request.onsuccess = e => {
+                    console.log('Negociacao incluida com sucesso');
+                }
+
+                request.onerror = e => {
+                    console.log('Nao foi possivel incluir a negociacao');
+                }
+            }
+
+            function listaTodos() {
+                let transaction = connection.transaction(['negociacoes'], 'readwrite')
+
+                let store = transaction.objectStore('negociacoes')
+
+                //cursor me da um ponteiro para meu primeiro objeto na objectStore
+                let cursor = store.openCursor()
+
+                let negociacoes = []
+
+                cursor.onsuccess = e => {
+                    //'e' eh um ponteiro para um objeto "no banco" que eh um json
+                    let ponteiro = e.target.result
+                    if (ponteiro) {
+                        let negociacaoStore = ponteiro.value;
+                        negociacoes.push(new Negociacao(negociacaoStore._data, negociacaoStore._quantidade, negociacaoStore._valor))
+
+                        //Avancando para o proximo ponteiro
+                        ponteiro.continue();
+                    } else {
+                        console.log('Minha lista de negociacoes', negociacoes);
+                    }
+
+                }
+
+                cursor.onerror = e => {
+                    console.log('Nao foi possivel obter as negociacoes');
+                    console.log(e.target.error.name);
+                }
+
+            }
+
+            ConnectionFactory
+                .getConnection()
+                .then(connection => {
+
+                })
+
+            // adiciona()
+
+
+
+        </script>
+    </body>
+</html>
