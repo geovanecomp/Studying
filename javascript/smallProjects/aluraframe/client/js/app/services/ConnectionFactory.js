@@ -7,11 +7,12 @@
 // por uma funcao anonima e a auto invocou envolvendo-a com parenteses.
 var ConnectionFactory = (function () {
 
-    var stores = ['negociacoes']
-    var version = 4
-    var dbName = 'aluraFrame'
+    const stores = ['negociacoes']
+    const version = 4
+    const dbName = 'aluraFrame'
 
     var connection = null
+    var close = null
 
     return class ConnectionFactory {
 
@@ -31,6 +32,12 @@ var ConnectionFactory = (function () {
                 openRequest.onsuccess = e => {
                     if (! connection) {
                         connection = e.target.result
+                        //Proibindo o desenvolvedor de fechar a conexao
+                        //Guardando a funcao orignal
+                        close = connection.close.bind(connection)
+                        connection.close = function() {
+                            throw new Error('Você não pode fechar diretamente a conexão')
+                        }
                     }
 
                     resolve(connection)
@@ -52,6 +59,13 @@ var ConnectionFactory = (function () {
                 connection.createObjectStore(store, {autoIncrement: true})
             })
 
+        }
+
+        static closeConnection() {
+            if(connection) {
+                close()
+                connection = null
+            }
         }
     }
 
