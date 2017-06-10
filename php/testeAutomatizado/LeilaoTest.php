@@ -3,6 +3,7 @@ require "Usuario.php";
 require "Lance.php";
 require "Leilao.php";
 class LeilaoTest extends PHPUnit_Framework_TestCase {
+
     public function testDeveProporUmLance() {
 
         $leilao = new Leilao("Macbook caro");

@@ -6,6 +6,13 @@ require "Avaliador.php";
 require_once ('PHPUnit/Framework/TestCase.php');
 
 class AvaliadorTest extends PHPUnit_Framework_TestCase {
+
+    private $avaliador;
+
+    public function setUp() {
+        $this->avaliador = new Avaliador();
+    }
+
     public function testDeveAceitarLancesEmOrdemDecrescente() {
         $leilao = new Leilao("Computador Gamer");
 
@@ -15,15 +22,14 @@ class AvaliadorTest extends PHPUnit_Framework_TestCase {
 
         $leilao->propoe(new Lance($geovane, 400));
         $leilao->propoe(new Lance($caio, 350));
-        $leilao->propoe(new Lance($felipe, 250));
+        $leilao->propoe(new Lance($felipe, 250));        
 
-        $avaliador = new Avaliador();
-        $avaliador->avalia($leilao);
+        $this->avaliador->avalia($leilao);
 
         $maiorEsperado = 400;
         $menorEsperado = 250;
-        $this->assertEquals($maiorEsperado, $avaliador->getMaiorLance());
-        $this->assertEquals($menorEsperado, $avaliador->getMenorLance());
+        $this->assertEquals($maiorEsperado, $this->avaliador->getMaiorLance());
+        $this->assertEquals($menorEsperado, $this->avaliador->getMenorLance());
 
     }
 
@@ -36,15 +42,14 @@ class AvaliadorTest extends PHPUnit_Framework_TestCase {
 
         $leilao->propoe(new Lance($geovane, 250));
         $leilao->propoe(new Lance($caio, 350));
-        $leilao->propoe(new Lance($felipe, 400));
+        $leilao->propoe(new Lance($felipe, 400));        
 
-        $avaliador = new Avaliador();
-        $avaliador->avalia($leilao);
+        $this->avaliador->avalia($leilao);
 
         $maiorEsperado = 400;
         $menorEsperado = 250;
-        $this->assertEquals($maiorEsperado, $avaliador->getMaiorLance());
-        $this->assertEquals($menorEsperado, $avaliador->getMenorLance());
+        $this->assertEquals($maiorEsperado, $this->avaliador->getMaiorLance());
+        $this->assertEquals($menorEsperado, $this->avaliador->getMenorLance());
 
     }
 
@@ -53,16 +58,15 @@ class AvaliadorTest extends PHPUnit_Framework_TestCase {
 
         $geovane = new Usuario("Geovane");
 
-        $leilao->propoe(new Lance($geovane, 2000));
+        $leilao->propoe(new Lance($geovane, 2000));        
 
-        $avaliador = new Avaliador();
-        $avaliador->avalia($leilao);
+        $this->avaliador->avalia($leilao);
 
         $maiorEsperado = 2000;
         $menorEsperado = 2000;
 
-        $this->assertEquals($maiorEsperado, $avaliador->getMaiorLance());
-        $this->assertEquals($menorEsperado, $avaliador->getMenorLance());
+        $this->assertEquals($maiorEsperado, $this->avaliador->getMaiorLance());
+        $this->assertEquals($menorEsperado, $this->avaliador->getMenorLance());
     }
 
     public function testDeveObterTresMaioresLances(){
@@ -76,15 +80,14 @@ class AvaliadorTest extends PHPUnit_Framework_TestCase {
         $leilao->propoe(new Lance($geovane, 400));
         $leilao->propoe(new Lance($caio, 500));
 
-        $maioresLancesEsperados = [500, 400, 300];
+        $maioresLancesEsperados = [500, 400, 300];        
 
-        $avaliador = new Avaliador();
-        $avaliador->avalia($leilao);
+        $this->avaliador->avalia($leilao);
 
-        $this->assertEquals(count($maioresLancesEsperados), count($avaliador->getMaioresLances()));
-        $this->assertEquals($maioresLancesEsperados[0], $avaliador->getMaioresLances()[0]->getValor());
-        $this->assertEquals($maioresLancesEsperados[1], $avaliador->getMaioresLances()[1]->getValor());
-        $this->assertEquals($maioresLancesEsperados[2], $avaliador->getMaioresLances()[2]->getValor());
+        $this->assertEquals(count($maioresLancesEsperados), count($this->avaliador->getMaioresLances()));
+        $this->assertEquals($maioresLancesEsperados[0], $this->avaliador->getMaioresLances()[0]->getValor());
+        $this->assertEquals($maioresLancesEsperados[1], $this->avaliador->getMaioresLances()[1]->getValor());
+        $this->assertEquals($maioresLancesEsperados[2], $this->avaliador->getMaioresLances()[2]->getValor());
 
     }
 }
