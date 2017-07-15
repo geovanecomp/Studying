@@ -7,6 +7,9 @@ let app = express()
 // sera usada em todo o sistema. Setando qual engine sera usada.
 app.set('view engine', 'ejs')
 
+//Definindo o novo diretorio de views
+app.set('views', './app/views')
+
 // Para criar módulos, deve-se seguir a seguinte estrutura.
 module.exports = function (){
     // app foi carregada anteriormente, desta forma nao preciso carregar
