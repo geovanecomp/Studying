@@ -13,7 +13,8 @@ module.exports = function(app) {
         })
 
         connection.query('select * from produtos', (err, results) => {
-            res.send(results)
+            // res.send('produtos/lista', {lista:results})
+            res.render('produtos/lista', {lista:results})
         })
 
         // fechando a conexao
