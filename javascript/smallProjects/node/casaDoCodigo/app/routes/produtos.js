@@ -16,4 +16,10 @@ module.exports = function(app) {
 
     })
 
+    app.get('/produtos/form', (req, res) => {
+        res.render('produtos/form')
+        console.log('Estou em cadastro');
+
+    })
+
 }
