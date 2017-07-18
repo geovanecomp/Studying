@@ -5,6 +5,7 @@ let load = require('express-load')
 // express(), que representa o express.
 let express = require('express')
 let app = express()
+let bodyParser = require('body-parser')
 
 // Para criar módulos, deve-se seguir a seguinte estrutura.
 module.exports = function (){
@@ -15,6 +16,11 @@ module.exports = function (){
 
     // Definindo o novo diretorio de views
     app.set('views', './app/views')
+
+    // Recebe funcoes que vao ser aplicadas no request na ordem em que foram
+    // definidas
+    //urlencoded é o formato que o servidor envia os dados por default
+    app.use(bodyParser.urlencoded({extended: true}))
 
     // Tudo que tiver dentro de routes, no momento de execução irá para dentro de app
     // também será carregado tudo de infra
