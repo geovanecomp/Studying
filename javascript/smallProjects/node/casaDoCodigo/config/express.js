@@ -22,6 +22,9 @@ module.exports = function (){
     //urlencoded é o formato que o servidor envia os dados por default
     app.use(bodyParser.urlencoded({extended: true}))
 
+    // Para aceitar requisicoes com dados em json
+    app.use(bodyParser.json())
+
     // Tudo que tiver dentro de routes, no momento de execução irá para dentro de app
     // também será carregado tudo de infra
     // O segundo parametro indica onde o load deve procurar (evitar que busque em tudo)

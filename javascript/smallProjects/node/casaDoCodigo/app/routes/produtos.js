@@ -7,13 +7,23 @@ module.exports = function(app) {
 
         produtosDao.lista((err, results) => {
             // res.send('produtos/lista', {lista:results})
-            res.render('produtos/lista', {lista:results})
+
+            // Permitindo vários tipos de retorno em função de possíveis requisições
+            // É possível servir diferentes formatos de um mesmo conteúdo a partir da mesma url
+            //  Evitando assim que se precisasse criar novas urls para cada formato necessário para exibir a lista de produtos
+            // Ja possui algumas chaves com os tipos de retorno mais comuns
+            res.format({
+                html: function() {
+                    res.render('produtos/lista', {lista:results})
+                },
+                json: function () {
+                    res.json(resultados)
+                }
+            })
         })
 
         // fechando a conexao
         connection.end()
-
-
     })
 
     app.get('/produtos/form', (req, res) => {
