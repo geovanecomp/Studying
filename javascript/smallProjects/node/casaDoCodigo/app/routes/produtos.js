@@ -27,7 +27,7 @@ module.exports = function(app) {
     })
 
     app.get('/produtos/form', (req, res) => {
-        res.render('produtos/form')
+        res.render('produtos/form', {errosValidacao: {}, produto:{}})
     })
 
     app.post('/produtos', (req, res) => {
@@ -38,8 +38,22 @@ module.exports = function(app) {
         // ja vem em json
         let produto = req.body;
 
+        // Dizendo que o titulo deve ser / seguir tal validação:
+        req.assert('titulo', 'Titulo é obrigatório').notEmpty();
+        req.assert('preco', 'Formato inválido').isFloat();
+
+        // Usar validationErrors
+        let erros = req.getValidationResult()        
+
+        if (erros) {
+            console.log(erros);
+            res.render('produtos/form', {errosValidacao: erros, produto: produto})
+            return
+        }
+
+
         produtosDao.salva(produto, (erros, resultados) => {
-            // Semre que há um post, deve-re redirecionar para outra rota
+            // Sempre que há um post, deve-re redirecionar para outra rota
             res.redirect('/produtos')
         })
 
