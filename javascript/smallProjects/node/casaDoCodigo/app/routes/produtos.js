@@ -17,7 +17,7 @@ module.exports = function(app) {
                     res.render('produtos/lista', {lista:results})
                 },
                 json: function () {
-                    res.json(resultados)
+                    res.json(results)
                 }
             })
         })

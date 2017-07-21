@@ -3,16 +3,16 @@ let load = require('express-load')
 
 // Ao importar o express, ele retorna uma funcao / objeto chamada
 // express(), que representa o express.
-// let bodyParser = require('body-parser')
-// let express = require('express')
-// let expressValidator = require('express-validator')
-// let app = express()
+let bodyParser = require('body-parser')
+let express = require('express')
+let expressValidator = require('express-validator')
+let app = express()
 
-var util = require('util'),
-    bodyParser = require('body-parser'),
-    express = require('express'),
-    expressValidator = require('express-validator'),
-    app = express();
+// var util = require('util'),
+//     bodyParser = require('body-parser'),
+//     express = require('express'),
+//     expressValidator = require('express-validator'),
+//     app = express();
 
 // Para criar módulos, deve-se seguir a seguinte estrutura.
 module.exports = function (){
@@ -30,7 +30,8 @@ module.exports = function (){
     app.use(bodyParser.urlencoded({extended: true}))
     // app.use(bodyParser.bodyParser({ extended: true })); //Documentacao esta assim, mas da erro
 
-    // A fim de aplicar validações na request
+    // A fim de aplicar validações na request.
+    // Deve ser seguido do bodyParser
     app.use(expressValidator())
 
     // Para aceitar requisicoes com dados em json
