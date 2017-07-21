@@ -43,11 +43,21 @@ module.exports = function(app) {
         req.assert('preco', 'Formato inválido').isFloat();
 
         // Usar validationErrors
-        let erros = req.getValidationResult()        
+        let erros = req.getValidationResult()
 
         if (erros) {
-            console.log(erros);
-            res.render('produtos/form', {errosValidacao: erros, produto: produto})
+
+            //formatando retorno
+            res.format({
+                html: function() {
+                    //se der um bad request, responde...:
+                    res.status(400).res.render('produtos/form', {errosValidacao: erros, produto: produto})
+                },
+                json: function () {
+                    res.status(400).res.json(erros)
+                }
+            })
+
             return
         }
 
