@@ -7,7 +7,7 @@ module.exports = function(app) {
 
         produtosDao.lista((err, results) => {
             // res.send('produtos/lista', {lista:results})
-
+            console.log(err);
             // Permitindo vários tipos de retorno em função de possíveis requisições
             // É possível servir diferentes formatos de um mesmo conteúdo a partir da mesma url
             //  Evitando assim que se precisasse criar novas urls para cada formato necessário para exibir a lista de produtos

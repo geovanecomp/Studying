@@ -11,6 +11,19 @@ let assert = require('assert')
 // fornecida pelo mocha.
 // É comum adicionar uma tralha para evedenciar os nomes /identificacoes dadas
 describe('#ProdutosController', function(){
+    // Sempre q for testar agora, ira limpar a base de teste
+    // Poderia usar outros hooks, como afterEach
+    // Pode-se usar node-database-cleanner para limpar todas as tabelas da aplicacao
+    beforeEach(function(done){
+        let conn = express.infra.connectionFactory()
+        conn.query("delete from produtos", function(ex, result){
+            if (!ex) {
+                done()
+            }
+        })
+    })
+
+
     //Por realizar uma requisição assincrona, deve-se informar ao mocha que
     // deve esperar a requiscao acabar, e isso vai ocorrer quando eu executar
     // novamente a 'funcaoFinalizacao'.
