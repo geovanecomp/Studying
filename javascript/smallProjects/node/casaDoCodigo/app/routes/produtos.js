@@ -51,10 +51,10 @@ module.exports = function(app) {
             res.format({
                 html: function() {
                     //se der um bad request, responde...:
-                    res.status(400).res.render('produtos/form', {errosValidacao: erros, produto: produto})
+                    res.status(400).render('produtos/form', {errosValidacao: erros, produto: produto})
                 },
                 json: function () {
-                    res.status(400).res.json(erros)
+                    res.status(400).json(erros)
                 }
             })
 
