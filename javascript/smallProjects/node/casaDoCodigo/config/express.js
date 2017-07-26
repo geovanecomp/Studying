@@ -17,6 +17,8 @@ let app = express()
 // Para criar módulos, deve-se seguir a seguinte estrutura.
 module.exports = function (){
 
+    // Para acessar os recursos estaticos, css e etc
+    app.use(express.static('./app/public'));
     // Usa o set quando quisermos definir variaveis para dentro o express que
     // sera usada em todo o sistema. Setando qual engine sera usada.
     app.set('view engine', 'ejs')
