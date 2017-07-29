@@ -16,7 +16,7 @@ module.exports = function (app) {
         var io = require('socket.io')(http);
         // io.emit('novaPromocao', promocao)
         app.get('io').emit('novaPromocao', promocao)
-        console.log(promocao);
+        
         res.redirect('promocoes/form')
 
         // let connection = app.infra.connectionFactory()

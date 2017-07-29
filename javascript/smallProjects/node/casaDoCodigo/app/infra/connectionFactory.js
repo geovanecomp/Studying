@@ -9,7 +9,7 @@ function createDBConnection() {
             host: 'localhost',
             user: 'geovane',
             password: '',
-            database: 'casadocodigo'
+            database: 'casadocodigo22'
         })
     }
 

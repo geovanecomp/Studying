@@ -49,6 +49,23 @@ module.exports = function (){
         .then('infra')
         .into(app)
 
+    // Criando nossa própria midleware
+    // Tem que ser colocada depois de setar as rotas, já que caso não encontradas
+    // informarei um 404
+    app.use((req, res, next) => {
+        res.status(404).render('erros/404')
+        next()
+    })
+
+    // Por ter 4 parametros inves de 3, irá chamar este prioritariamente
+    app.use((error, req, res, next) => {
+        if (process.env.NODE_ENV == 'production') {
+            res.status(500).render('erros/500')
+        }
+        //Caso nao for ambiente de produção,passo o erro normal para o express tratar
+        next(error)
+    })
+
     // app foi carregada anteriormente, desta forma nao preciso carregar
     // sempre, pois estou retornando a mesma referencia.
     return app
