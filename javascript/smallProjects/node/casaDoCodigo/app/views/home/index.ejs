@@ -252,7 +252,9 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     let socket = io() // Se comunica com o servidor com o protocolo disponivel no servidor
+    console.log('SOCKET:!!!!! ', socket);
     socket.on('novaPromocao', function(data){
+        console.log('AAAAAAAAAAAAAAAAAAA ENTROU');
         alert('livro em promocao'+data.livro.id)
     })
 </script>

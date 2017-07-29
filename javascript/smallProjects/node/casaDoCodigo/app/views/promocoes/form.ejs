@@ -19,5 +19,13 @@
             </div>
             <input type="submit" value="Cadastrar Promoção">
         </form>
+        <!-- Rota ja configurada automaticamente para o servidor do node -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io() // Se comunica com o servidor com o protocolo disponivel no servidor
+            socket.on('novaPromocao', function(data){                
+                alert('livro em promocao'+data.livro.id)
+            })
+        </script>
     </body>
 </html>
