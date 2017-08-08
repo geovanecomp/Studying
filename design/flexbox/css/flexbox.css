@@ -87,8 +87,10 @@
 
 .videoSobre-video{
   flex-grow: 2;
+  /*Conforme a tela reduz, o video reduzira 2 vezes mais que outro componente*/
+  /*Caso usar flex-shrink: 0, o vídeo não reduzirá*/
+  flex-shrink: 2
 }
-
 
 /*Parte Mobile*/
 @media(max-width: 768px){
@@ -133,5 +135,13 @@
     /*Setando um elemento para a primeira posição*/
     /*Por padrão, todos os elementos possuem order: 0*/
     order: -1;
+  }
+
+  .videoSobre .container {
+    flex-direction: column;
+  }
+
+  .videoSobre-video {
+    margin: 0 auto;
   }
 }
