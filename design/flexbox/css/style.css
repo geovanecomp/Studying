@@ -32,7 +32,6 @@ body {
 	text-decoration: none;
 	transition: .5s;
 	display: block;
-
 	border-bottom: 1px solid #9799A6;
 }
 
@@ -51,7 +50,7 @@ body {
 .conteudoPrincipal-cursos-link {
 	height: 100px;
 	background-color: #FFF;
-	text-align: center;
+	text-align: left;
 	margin: 1%;
 	transition: .3s;
 	box-shadow: 2px 2px 2px #CCC;
@@ -83,7 +82,7 @@ body {
 }
 
 .conteudoPrincipal-cursos-link:nth-child(even) a:before {
-	background: url(../img/background1.svg) no-repeat;	
+	background: url(../img/background1.svg) no-repeat;
 }
 
 .conteudoPrincipal-cursos-link:nth-child(odd) a:before {
@@ -159,7 +158,7 @@ body {
 	background-color: #4DBA7A;
 	color: #FFF;
 	cursor: pointer;
-	
+
 }
 
 .rodapePrincipal-contatoForm-submit,
@@ -212,7 +211,7 @@ body {
 @media(min-width: 769px) {
 
 	.container {
-		width: 85%;	
+		width: 85%;
 	}
 
 	.subtitulo {
@@ -283,5 +282,3 @@ body {
 	}
 
 }
-
-
