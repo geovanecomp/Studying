@@ -27,8 +27,6 @@
 
 .rodapePrincipal-contatoForm {
     width: 25%;
-    display: flex;
-    justify-content: space-around;
 }
 
 .rodapePrincipal-contatoForm-fieldset {
@@ -69,6 +67,26 @@
 .cabecalhoPrincipal {
     display: flex;
     flex-direction: column;
+}
+
+.videoSobre .container {
+  display: flex;
+}
+
+/*Divide em 3 partes, e aloca 1 para a lista e 2 para o video*/
+.videoSobre-sobre {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /*Falando para o flex item que deve crescer o espaço restante*/
+  flex-grow: 1;
+}
+.videoSobre-sobre-list {
+  flex-grow: 1;
+}
+
+.videoSobre-video{
+  flex-grow: 2;
 }
 
 
