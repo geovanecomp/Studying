@@ -110,4 +110,10 @@
   .rodapePrincipal-contatoForm-fieldset {
     justify-content: center;
   }
+
+  .cabecalhoPrincipal-nav-link-app {
+    /*Setando um elemento para a primeira posição*/
+    /*Por padrão, todos os elementos possuem order: 0*/
+    order: -1;
+  }
 }
