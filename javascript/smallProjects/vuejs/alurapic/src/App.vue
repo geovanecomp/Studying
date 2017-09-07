@@ -2,7 +2,16 @@
   <div class="corpo">
     <h1 class="centralizado">{{ titulo }}</h1>
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto in fotos">
+      <!-- $event eh uma variavel especial que possui as informacoes do evento -->
+      <!-- Toda vez que eu digitar, vou executar filtro = $event.target.value -->
+      <!-- v-on é um data bind da view para a fonte de dados -->
+      <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtre por parte do título" name="" value="">
+
+      <!-- Data bind da fonte de dados para a view -->
+      <!-- {{ filtro }} -->
+
+      <!-- Acessando o computed fotosComFiltro -->
+      <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
 
         <painel :titulo="foto.titulo">
           <img  class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
@@ -24,7 +33,20 @@ export default {
   data () {
     return {
       titulo: 'Alura Pic',
-      fotos: []
+      fotos: [],
+      filtro: ''
+    }
+  },
+
+  computed: {
+    fotosComFiltro () {
+      if (this.filtro) {
+        // Varrendo a lista de fotos e filtrando apenas as fotos coincidirem com a busca
+        let exp = new RegExp(this.filtro.trim(), 'i')
+        return this.fotos.filter(foto => exp.test(foto.titulo))
+      } else {
+        return this.fotos
+      }
     }
   },
 
@@ -58,6 +80,11 @@ export default {
   }
 
   .imagem-responsiva {
+    width: 100%;
+  }
+
+  .filtro {
+    display: block;
     width: 100%;
   }
 
