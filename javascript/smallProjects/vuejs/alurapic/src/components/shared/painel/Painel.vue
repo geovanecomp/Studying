@@ -1,10 +1,18 @@
 <template>
 
   <div class="painel">
-    <h2 class="painel-titulo">{{ titulo }}</h2>
-    <!-- Devo usar o slot para dizer qual parte do meu componente recebera o conteudo passado na instancia do mesmo -->
-    <slot class="painel-conteudo">
-    </slot>
+    <h2 class="painel-titulo" @dblclick="visivel = !visivel">{{ titulo }}</h2>
+    <!-- transition so pode der um filho -->
+    <!-- transition ira criar varias classes fade relativas a transacao para aplicar o css -->
+    <transition name="painel-fade">
+      <div class="painel-conteudo" v-show="visivel">
+        <!-- Devo usar o slot para dizer qual parte do meu componente recebera o conteudo passado na instancia do mesmo -->
+        <slot>
+        </slot>
+      </div>
+    </transition>
+
+
   </div>
 
 </template>
@@ -13,7 +21,13 @@
 export default {
   props: [
     'titulo'
-  ]
+  ],
+
+  data () {
+    return {
+      visivel: true
+    }
+  }
 }
 </script>
 
@@ -43,6 +57,14 @@ export default {
 
   * {
     box-shadow: 5px 5px 5px;
+  }
+
+  .painel-fade-enter, .painel-fade-leave-active {
+    opacity: 0;
+  }
+
+  .painel-fade-enter-active, .painel-fade-leave-active {
+    transition: opacity 0.5s;
   }
 
 /*#app {

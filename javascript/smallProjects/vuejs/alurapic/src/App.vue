@@ -5,7 +5,7 @@
       <!-- $event eh uma variavel especial que possui as informacoes do evento -->
       <!-- Toda vez que eu digitar, vou executar filtro = $event.target.value -->
       <!-- v-on é um data bind da view para a fonte de dados -->
-      <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtre por parte do título" name="" value="">
+      <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Filtre por parte do título" name="" value="">
 
       <!-- Data bind da fonte de dados para a view -->
       <!-- {{ filtro }} -->
