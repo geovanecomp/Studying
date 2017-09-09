@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="centralizado">{{ titulo }}</h1>
+    <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
     <ul class="lista-fotos">
       <!-- $event eh uma variavel especial que possui as informacoes do evento -->
       <!-- Toda vez que eu digitar, vou executar filtro = $event.target.value -->
@@ -49,7 +50,8 @@ export default {
     return {
       titulo: 'Alura Pic',
       fotos: [],
-      filtro: ''
+      filtro: '',
+      mensagem: ''
     }
   },
 
@@ -67,6 +69,13 @@ export default {
 
   methods: {
     remove (foto) {
+      this.$http
+        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        .then(() => this.mensagem = 'Foto removida com sucesso', err => {
+          console.log(err)
+          this.mensagem = 'Não foi possível excluir a foto.'
+        })
+
       alert('remover a foto ' + foto.titulo)
     }
   },
