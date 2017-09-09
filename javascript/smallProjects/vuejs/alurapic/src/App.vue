@@ -17,7 +17,8 @@ import Menu from './components/shared/menu/Menu.vue'
 export default {
   data () {
     return {
-      routes
+      // Obtendo apenas as urls q sao menus
+      routes: routes.filter(route => route.menu)
     }
   },
   components: {
