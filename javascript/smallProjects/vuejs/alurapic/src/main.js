@@ -13,6 +13,7 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(routes)
 
+Vue.http.options.root = 'http://localhost:3000'
 
 
 //Se a chave e o valor possuem o mesmo nome, posso omitir:

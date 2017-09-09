@@ -34,7 +34,7 @@ import Painel from '../shared/painel/Painel.vue'
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
 import Botao from '../shared/botao/Botao.vue'
 import Transform from '../../directives/Transform'
-
+import FotoService from '../domain/foto/FotoService'
 export default {
   components: {
       'painel': Painel,
@@ -69,21 +69,55 @@ export default {
 
   methods: {
     remove (foto) {
-      this.$http
-        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
-        .then(() => this.mensagem = 'Foto removida com sucesso', err => {
-          console.log(err)
-          this.mensagem = 'Não foi possível excluir a foto.'
-        })
+      // Usa o resource estabelecido em created(). O delete automaticamente utiliza o parametro id
+      // this.resource.delete({id: foto._id})
+
+      this.service.apaga(foto._id)
+      .then(() => {
+        let indice = this.fotos.indexOf(foto)
+        // Inves de pedir uma nova listao ao servidor, é melhor remover este elemento do array de fotos
+        this.fotos.splice(indice, 1)
+        this.mensagem = 'Foto removida com sucesso'
+      },
+      err => {
+        console.log(err)
+        this.mensagem = 'Não foi possível excluir a foto.'
+      })
+      // this.$http
+      //   .delete(`v1/fotos/${foto._id}`)
+      //   .then(() => {
+      //     let indice = this.fotos.indexOf(foto)
+      //     // Inves de pedir uma nova listao ao servidor, é melhor remover este elemento do array de fotos
+      //     this.fotos.splice(indice, 1)
+      //     this.mensagem = 'Foto removida com sucesso'
+      //   },
+      //   err => {
+      //     console.log(err)
+      //     this.mensagem = 'Não foi possível excluir a foto.'
+      //   })
     }
   },
 
   // hook disparado sempre o componente é criado (lifecycle hooks)
   created() {
-    // Efetuando uma requisição, convertendo para json e setando no attr fotos.
-    this.$http.get('http://localhost:3000/v1/fotos')
-      .then(res => res.json())
+    this.service = new FotoService(this.$resource)
+
+    this.service
+      .lista()
       .then(fotos => this.fotos = fotos, err => console.log(err))
+
+    // ** Outras formas de se fazer a requisição **
+    // query() é inteligente o suficiente para ignorar o parametro id
+    // this.resource = this.$resource('v1/fotos{/id}')
+    // this.resource.query()
+    //   .then(res => res.json())
+    //   .then(fotos => this.fotos = fotos, err => console.log(err))
+
+    // Efetuando uma requisição, convertendo para json e setando no attr fotos.
+    // Outra forma não comum utilizando http
+    // this.$http.get('v1/fotos')
+    //   .then(res => res.json())
+    //   .then(fotos => this.fotos = fotos, err => console.log(err))
   }
 }
 </script>
