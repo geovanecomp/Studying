@@ -6,6 +6,7 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
+import './directives/Transform'
 
 //Disponibilizando o vue resource para toda a aplicação.
 Vue.use(VueResource)

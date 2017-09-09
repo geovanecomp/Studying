@@ -67,6 +67,10 @@ export default {
     transition: opacity 0.5s;
   }
 
+  .painel-conteudo {
+    overflow: hidden;
+  }
+
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
