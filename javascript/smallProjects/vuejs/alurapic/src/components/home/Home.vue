@@ -75,8 +75,6 @@ export default {
           console.log(err)
           this.mensagem = 'Não foi possível excluir a foto.'
         })
-
-      alert('remover a foto ' + foto.titulo)
     }
   },
 

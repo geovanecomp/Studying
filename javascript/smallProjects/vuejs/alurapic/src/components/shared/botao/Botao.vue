@@ -25,8 +25,7 @@ export default {
     disparaAcao() {
       if (this.confirmacao) {
         if (confirm('Confirma operação?')) {
-          // Dispara um evendo com o nome que eu quiser
-          alert('CLIQUEI NO METODO DO COMPONENTE')
+          // Dispara um evendo com o nome que eu quiser          
           this.$emit('botaoAtivado')
         }
         return
