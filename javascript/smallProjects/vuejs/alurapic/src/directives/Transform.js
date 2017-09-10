@@ -29,8 +29,7 @@ export default {
 
       el.style.transform = efeito
 
-    })
-    console.log('diretiva associada')
+    })    
     console.log(el)
   }
 }

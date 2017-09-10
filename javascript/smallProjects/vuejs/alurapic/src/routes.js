@@ -1,4 +1,6 @@
-import Cadastro from './components/cadastro/Cadastro.vue'
+// import Cadastro from './components/cadastro/Cadastro.vue'
+// Aplicando lazy loading. Assim  carregar determinado componente assincronamente apenas quando o usuário acessar sua rota 
+const Cadastro = () => System.import('./components/cadastro/Cadastro.vue')
 import Home from './components/home/Home.vue'
 
 export const routes = [
