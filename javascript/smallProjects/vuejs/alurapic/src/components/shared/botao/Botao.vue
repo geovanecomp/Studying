@@ -25,7 +25,7 @@ export default {
     disparaAcao() {
       if (this.confirmacao) {
         if (confirm('Confirma operação?')) {
-          // Dispara um evendo com o nome que eu quiser          
+          // Dispara um evendo com o nome que eu quiser
           this.$emit('botaoAtivado')
         }
         return
@@ -43,22 +43,6 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .botao {
-    display: inline-block;
-    padding: 10px;
-    border-radius: 3px;
-    margin: 10px;
-    font-size: 1.2em;
-  }
-
-  .botao-perigo {
-    background-color: firebrick;
-    color: white;
-  }
-
-  .botao-padrao {
-    background-color: darkcyan;
-    color: white;
-  }
+<style lang="sass">
+  @import './Botao.scss'
 </style>
