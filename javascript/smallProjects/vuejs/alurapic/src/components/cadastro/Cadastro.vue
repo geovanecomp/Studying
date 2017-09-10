@@ -3,6 +3,9 @@
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado"></h2>
 
+    <h2 v-if="foto._id" class="centralizado">Alterando</h2>
+    <h2 v-else class="centralizado">Incluindo</h2>
+
     <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
@@ -60,7 +63,10 @@
       grava() {
         this.service
         .cadastra(this.foto)
-        .then(() => this.foto = new Foto, err => console.log(err))
+        .then(() => {
+          if (this.id) this.$router.push({ name: 'home' })
+          this.foto = new Foto
+        }, err => console.log(err))
       }
     }
   }

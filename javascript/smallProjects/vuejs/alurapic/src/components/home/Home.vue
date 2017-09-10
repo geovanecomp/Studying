@@ -85,11 +85,7 @@ export default {
         // Inves de pedir uma nova listao ao servidor, é melhor remover este elemento do array de fotos
         this.fotos.splice(indice, 1)
         this.mensagem = 'Foto removida com sucesso'
-      },
-      err => {
-        console.log(err)
-        this.mensagem = 'Não foi possível excluir a foto.'
-      })
+      }, err => this.mensagem = 'Não foi possível excluir a foto.')
       // this.$http
       //   .delete(`v1/fotos/${foto._id}`)
       //   .then(() => {
@@ -111,7 +107,7 @@ export default {
 
     this.service
       .lista()
-      .then(fotos => this.fotos = fotos, err => console.log(err))
+      .then(fotos => this.fotos = fotos, err => this.mensagem = err.message)
 
     // ** Outras formas de se fazer a requisição **
     // query() é inteligente o suficiente para ignorar o parametro id
