@@ -25,6 +25,21 @@ Vue.use(VeeValidate, {
 // Setando para usar o endereco de desenvolvimento ou de producao
 Vue.http.options.root = process.env.API_URL ? process.env.API_URL : 'http://localhost:3000'
 
+// Setando authorization no header da requisicao
+// Vue.http.interceptors.push((req, next) => {
+//
+//     // é possível colocar informações no header antes do envio da requisição
+//     req.headers.set('Authorization', 'informação de segurança aqui');
+//     console.log('Lidando com o request');
+//
+//     next(res => {
+//       console.log('Lidando com a resposta')
+//       // é possível acessar os dados da reposta e realizar transformações antes
+//       console.log(res.body);
+//     });
+//
+// });
+
 
 //Se a chave e o valor possuem o mesmo nome, posso omitir:
 // const router = new VueRouter({
