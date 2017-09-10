@@ -22,7 +22,8 @@ Vue.use(VeeValidate, {
   locale: 'pt_BR',
 })
 
-Vue.http.options.root = 'http://localhost:3000'
+// Setando para usar o endereco de desenvolvimento ou de producao
+Vue.http.options.root = process.env.API_URL ? process.env.API_URL : 'http://localhost:3000'
 
 
 //Se a chave e o valor possuem o mesmo nome, posso omitir:
