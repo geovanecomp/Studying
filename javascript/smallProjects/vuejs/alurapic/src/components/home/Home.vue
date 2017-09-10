@@ -16,6 +16,13 @@
 
         <painel :titulo="foto.titulo">
           <imagem-responsiva v-transform:rotate.animacao.reverse="15" :url="foto.url" :titulo="foto.titulo"/>
+          <router-link :to="{ name: 'altera', params: { id: foto._id}}">
+            <botao
+              tipo="button"
+              rotulo="Alterar"
+              :confirmacao="false"
+              estilo="padrao"/>
+          </router-link>
           <botao
             tipo="button"
             rotulo="Remover"
