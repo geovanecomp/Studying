@@ -16,6 +16,15 @@ Vagrant.configure("2") do |config|
   
   # Defining the machine's name (web)
   config.vm.define :web do |web_config|
+	web_config.vm.network "private_network", ip: "192.168.50.10"
+
+	# Setting bootstrap's script
+	web_config.vm.provision "shell", path: "manifests/bootstrap.sh"
+
+	# Setting puppet's information
+	web_config.vm.provision "puppet" do |puppet|
+		puppet.manifest_file = "web.pp"
+	end
   end
 
   # Disable automatic box update checking. If you disable this, then
