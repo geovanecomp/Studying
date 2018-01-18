@@ -4,4 +4,15 @@ module.exports = function(app) {
     res.send('Exibindo rota de pagamentos')
   })
 
+  app.post('/pagamentos/pagamento', (req, res) => {
+    console.log('AAAAA')
+    let pagamento = req.body
+
+    pagamento.status = 'Criado'
+    pagamento.data = new Date
+
+    console.log(pagamento)
+    res.send('Estou no metodo post de pagamentos')
+  })
+
 }
