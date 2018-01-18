@@ -3,6 +3,27 @@ module.exports = function(app) {
     res.send('Exibindo rota de pagamentos')
   })
 
+  app.delete('/pagamentos/pagamento/:id', (req, res) => {
+    let pagamento = req.body
+    pagamento.id = req.params.id
+    pagamento.status = 'CANCELADO'
+
+
+    let connection = app.persistencia.connectionFactory()
+    let pagamentoDao = new app.persistencia.pagamentoDao(connection)
+
+    pagamentoDao.atualizar(pagamento, (erro, resultado) => {
+      if (erro) {
+        res.status(500).send(erro)
+      } else {
+        res.status(204).json(pagamento)
+      }
+    })
+
+  })
+
+
+
   app.put('/pagamentos/pagamento/:id', (req, res) => {
     req.assert('forma_de_pagamento',
       'Forma de pagamento é de preenchimento obrigatório'). notEmpty()
@@ -32,7 +53,7 @@ module.exports = function(app) {
       } else {
         res.status(200).json(pagamento)
       }
-    })  
+    })
 
   })
 
