@@ -14,6 +14,7 @@ module.exports = function () {
   // Injetando dentro de app, todas as informações das rotas
   consign()
     .include('routes')
+    .then('persistencia')
     .into(app)
   return app
 }
