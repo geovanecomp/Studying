@@ -1,17 +1,17 @@
-//express eh usado também para requests
-let app = require('./config/express')()
-// Socker.io espera um obj server nativo do node.
-// Por isso instancio http e neste digo que usarei o express
-let http = require('http').Server(app)
-// Expera como argumento em handler de request
-let io = require('socket.io')(http)
+// Ao importar o express, ele retorna uma funcao / objeto chamada express(), que representa o express.
+let express = require('express')
+let app = express()
 
-// Setando io para ser enxergado nos demais lugares atraves do app.get('io')
-app.set('io', io)
+// Usa o set quando quisermos definir variaveis para dentor o express que sera usada em todo o sistema
+// Setando qual engine sera usada
+app.set('view engine', 'ejs')
 
-//Vai usar a porta definida (por exemplo no heroku), ou a padrão
-let porta = process.env.PORT || 3000
-// app.listen(3000, () => {
-http.listen(3000, () => {
+app.get('/produtos', (req, res) => {
+    // res.send('<html><body>Listando os produtos da loja utilizando express!</body></html>')
+    // render(), renderizará uma página
+    res.render('produtos/lista')
+})
+
+app.listen(3000, () => {
     console.log('servidor rodando')
 })
