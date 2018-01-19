@@ -3,6 +3,22 @@ module.exports = function(app) {
     res.send('Exibindo rota de pagamentos')
   })
 
+  app.get('/pagamentos/pagamento/:id', (req, res) => {
+    let id = req.params.id
+    let connection = app.persistencia.connectionFactory()
+    let pagamentoDao = new app.persistencia.pagamentoDao(connection)
+
+    pagamentoDao.buscarPorId(id, (erro, resultado) => {
+      if (erro) {
+        console.log('Erro ao consultar pagamentos no banco: ', erro);
+        res.status(500).send(erro)
+        return
+      }
+      res.status(200).json(resultado)
+      return
+    })
+  })
+
   app.delete('/pagamentos/pagamento/:id', (req, res) => {
     let pagamento = req.body['pagamento']
     pagamento.id = req.params.id
@@ -86,7 +102,7 @@ module.exports = function(app) {
         console.log('Pagamento criado')
 
         if (pagamento.forma_de_pagamento == 'cartao') {
-          let cartao = req.body['cartao']          
+          let cartao = req.body['cartao']
           let clienteCartoes = new app.servicos.clienteCartoes()
 
           clienteCartoes.autorizar(cartao, (exception, request, response, retorno) => {
