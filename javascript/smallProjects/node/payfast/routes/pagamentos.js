@@ -1,3 +1,5 @@
+let logger = require('../servicos/logger.js')
+
 module.exports = function(app) {
   app.get('/pagamentos', (req, res) => {
     res.send('Exibindo rota de pagamentos')
@@ -5,6 +7,8 @@ module.exports = function(app) {
 
   app.get('/pagamentos/pagamento/:id', (req, res) => {
     let id = req.params.id
+
+    logger.info('Log direto por info')
 
     let memcachedClient = app.servicos.memcachedClient()
 
