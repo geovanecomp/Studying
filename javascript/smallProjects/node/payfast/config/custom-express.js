@@ -3,9 +3,21 @@ let express = require('express')
 let consign = require('consign')
 let bodyParser = require('body-parser')
 let expressValidator = require('express-validator')
+let morgan = require('morgan')
+let logger = require('../servicos/logger')
 
 module.exports = function () {
   let app = express()
+
+  //Formato pre-definido pelo parametro common definido pelo padrao apache common log output
+  app.use(morgan('common', {
+    // Abre um pipe durante a requisicao para nao trava-la
+    stream: {
+      write: (mensagem) => {
+        logger.info(mensagem)
+      }
+    }
+  }))
 
   app.use(bodyParser.urlencoded({extended: true}))
 
