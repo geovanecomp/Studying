@@ -1,4 +1,10 @@
 let winston = require('winston')
+let fs = require('fs')
+
+// Criando a pasta de logs caso nao exista
+if (!fs.existsSync('logs')) {
+  fs.mkdirSync('logs')
+}
 
 let logger = new winston.Logger({
   transports: [
