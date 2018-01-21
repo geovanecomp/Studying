@@ -11,7 +11,6 @@ pagamentoDao.prototype.atualizar = function(pagamento,callback) {
     this._connection.query('UPDATE pagamentos SET ? WHERE id = ?', [pagamento, pagamento.id], callback);
 }
 
-
 pagamentoDao.prototype.listar = function(callback) {
     this._connection.query('select * from pagamentos',callback);
 }

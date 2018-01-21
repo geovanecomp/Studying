@@ -4,7 +4,7 @@ let consign = require('consign')
 let bodyParser = require('body-parser')
 let expressValidator = require('express-validator')
 let morgan = require('morgan')
-let logger = require('../servicos/logger')
+let logger = require('../service/logger')
 
 module.exports = function () {
   let app = express()
@@ -29,7 +29,8 @@ module.exports = function () {
 
   // Injetando dentro de app, todas as informações das rotas
   consign()
-    .include('route')
+  .include('controller')
+    .then('route')
     .then('dao')
     .then('service')
     .into(app)
