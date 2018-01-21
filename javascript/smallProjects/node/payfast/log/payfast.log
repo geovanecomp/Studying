@@ -1,0 +1,4 @@
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-20T18:21:09.259Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Jan/2018:18:21:09 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 151\n","timestamp":"2018-01-20T18:21:09.308Z"}
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-20T19:15:46.782Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Jan/2018:19:15:46 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 153\n","timestamp":"2018-01-20T19:15:46.885Z"}

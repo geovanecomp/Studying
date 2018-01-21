@@ -29,9 +29,9 @@ module.exports = function () {
 
   // Injetando dentro de app, todas as informações das rotas
   consign()
-    .include('controllers')
-    .then('persistencia')
-    .then('servicos')
+    .include('route')
+    .then('dao')
+    .then('service')
     .into(app)
   return app
 }
