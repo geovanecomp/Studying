@@ -11,7 +11,7 @@ let logger = new winston.Logger({
     // Posso definir gravar em file ou console
     new winston.transports.File({
       level: 'info',
-      filename: 'logs/payfast.log',
+      filename: 'log/payfast.log',
       maxSize: 100000,
       maxFiles: 10
     })
