@@ -7,13 +7,23 @@ module.exports = (app) => {
   // -----------------------------------------------------------------------------
 
   controller.index = (req, res) => {
-    res.send('Exibindo rota de pagamentos')
+    let connection = app.dao.connectionFactory()
+    let pagamentoDao = new app.dao.pagamentoDao(connection)
+
+    pagamentoDao.listar((erro, resultado) => {
+      if (erro) {
+        console.log('Erro ao listar pagamentos: ', erro);
+        res.status(500).send(erro)
+        return
+      }
+      res.status(200).json(resultado)
+      return
+    })    
   }
 
   // -----------------------------------------------------------------------------
 
   controller.show = (req, res) => {
-    console.log('TO NO SHOW');
     let id = req.params.id
 
     logger.info('Log direto por info')
@@ -98,11 +108,10 @@ module.exports = (app) => {
       }
     })
   }
-  
+
   // -----------------------------------------------------------------------------
 
   controller.create = (req, res) => {
-    console.log('COO');
     req.assert('pagamento.forma_de_pagamento',
      'Forma de pagamento é de preenchimento obrigatório').notEmpty()
     req.assert('pagamento.valor',

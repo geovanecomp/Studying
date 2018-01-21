@@ -25,3 +25,12 @@
 {"level":"info","message":"Log direto por info","timestamp":"2018-01-21T20:07:06.347Z"}
 {"level":"info","message":"Log direto por info","timestamp":"2018-01-21T20:07:31.065Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:07:31 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 153\n","timestamp":"2018-01-21T20:07:31.175Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:19:55 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:19:55.871Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:20:23 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:20:23.918Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:21:09 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:21:09.515Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:22:15 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:22:15.486Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:23:01 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:23:01.996Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:23:05 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:23:05.898Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:23:09 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 400 356\n","timestamp":"2018-01-21T20:23:09.568Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:23:28 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 201 143\n","timestamp":"2018-01-21T20:23:28.601Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:43:53 +0000] \"GET /pagamentos HTTP/1.1\" 200 5794\n","timestamp":"2018-01-21T20:43:53.098Z"}

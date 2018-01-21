@@ -3,8 +3,3 @@
   "sCepOrigem": "04101300",
   "sCepDestino": "65000600"
 }
-
-
-curl http://localhost:3000/correios/calculo-prazo -v -H "Content-type: application/json" -d @files/dados-entrega.json
-
-curl http://localhost:3000/pagamentos/pagamento -v -H "Content-type: application/json" -d @files/pagamento.json
