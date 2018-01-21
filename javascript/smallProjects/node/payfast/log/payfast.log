@@ -2,3 +2,26 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [20/Jan/2018:18:21:09 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 151\n","timestamp":"2018-01-20T18:21:09.308Z"}
 {"level":"info","message":"Log direto por info","timestamp":"2018-01-20T19:15:46.782Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [20/Jan/2018:19:15:46 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 153\n","timestamp":"2018-01-20T19:15:46.885Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:42:55 +0000] \"GET /pagamentos HTTP/1.1\" 404 149\n","timestamp":"2018-01-21T11:42:55.542Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:43:38 +0000] \"GET /pagamentos HTTP/1.1\" 404 149\n","timestamp":"2018-01-21T11:43:38.025Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:44:06 +0000] \"GET /pagamentos HTTP/1.1\" 404 149\n","timestamp":"2018-01-21T11:44:06.232Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:47:40 +0000] \"GET /pagamentos HTTP/1.1\" 200 27\n","timestamp":"2018-01-21T11:47:40.639Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:48:50 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" - -\n","timestamp":"2018-01-21T11:48:50.301Z"}
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-21T11:49:04.740Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:11:49:04 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 500 2519\n","timestamp":"2018-01-21T11:49:04.760Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:19:54:11 +0000] \"GET /pagamentos HTTP/1.1\" 500 2551\n","timestamp":"2018-01-21T19:54:11.904Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:19:55:53 +0000] \"GET /pagamentos HTTP/1.1\" 200 27\n","timestamp":"2018-01-21T19:55:53.010Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:19:57:48 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T19:57:48.917Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:19:58:02 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T19:58:02.384Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:19:58:17 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T19:58:18.000Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:05:13 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T20:05:13.149Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:05:28 +0000] \"GET /pagamentos HTTP/1.1\" 200 27\n","timestamp":"2018-01-21T20:05:28.930Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:05:52 +0000] \"GET /pagamentos HTTP/1.1\" 200 27\n","timestamp":"2018-01-21T20:05:52.250Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:05:56 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T20:05:56.811Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:05:58 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T20:05:58.569Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:06:17 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 404 162\n","timestamp":"2018-01-21T20:06:17.418Z"}
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-21T20:06:37.947Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:06:37 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 500 2555\n","timestamp":"2018-01-21T20:06:37.964Z"}
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-21T20:07:06.347Z"}
+{"level":"info","message":"Log direto por info","timestamp":"2018-01-21T20:07:31.065Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [21/Jan/2018:20:07:31 +0000] \"GET /pagamentos/pagamento/37 HTTP/1.1\" 200 153\n","timestamp":"2018-01-21T20:07:31.175Z"}
