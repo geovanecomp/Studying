@@ -7,18 +7,47 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {lista : []};
+    // Setando o escopo do react para a funcao
+    this.submeterForm = this.submeterForm.bind(this)
+    this.setNome = this.setNome.bind(this)
+    this.setEmail = this.setEmail.bind(this)
+    this.setSenha = this.setSenha.bind(this)
+    // Propriedade state eh diponibilizada pelo proprio react
+    this.state = {
+      lista : [],
+      nome: '',
+      email: '',
+      senha: ''
+      // form: {
+      //   nome: '',
+      //   email: '',
+      //   senha: ''
+      // }
+    };
+  }
+
+  setNome(evento) {
+    this.setState({nome: evento.target.value})
+    // this.setState({form: {nome: evento.target.value}})
+  }
+
+  setEmail(evento) {
+    this.setState({email: evento.target.value})
+    // this.setState({form: {email: evento.target.value}})
+  }
+
+  setSenha(evento) {
+    this.setState({senha: evento.target.value})
+    // this.setState({form: {senha: evento.target.value}})
   }
 
   // Hook disparado logo apos montar o componente
   componentDidMount(){
-    console.log("didMount");
     $.ajax({
         // Servidor remoto onde se encontra o backend
         url:"http://cdc-react.herokuapp.com/api/autores",
         dataType: 'json',
         success:function(resposta){
-          console.log("chegou a resposta", resposta);
           // Para atualizar a propriedade dinamicamente
           this.setState({lista:resposta});
         }.bind(this) // Setando o scopo para o react inves do jquery
@@ -26,8 +55,27 @@ class App extends Component {
     );
   }
 
+  submeterForm(evento) {
+    // Para nao atualizar a pagina
+    evento.preventDefault()
+
+    let state = this.state
+    $.ajax({
+      url:"http://cdc-react.herokuapp.com/api/autores",
+      contentType: 'application/json',
+      dataType: 'json',
+      type: 'post',
+      data: JSON.stringify({nome: state.nome, email: state.email, senha: state.senha}),
+      success: (resposta) => {
+        this.setState({lista: resposta})
+      },
+      error: (error) => {
+        console.log('Enviado com erro');
+      }
+    })
+  }
+
   render() {
-    console.log("render");
     return (
       <div id="layout">
 
@@ -56,18 +104,18 @@ class App extends Component {
                   </div>
                   <div className="content" id="content">
                     <div className="pure-form pure-form-aligned">
-                      <form className="pure-form pure-form-aligned">
+                      <form className="pure-form pure-form-aligned" onSubmit={this.submeterForm} >
                         <div className="pure-control-group">
                           <label htmlFor="nome">Nome</label>
-                          <input id="nome" type="text" name="nome" value=""  />
+                          <input id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome} />
                         </div>
                         <div className="pure-control-group">
                           <label htmlFor="email">Email</label>
-                          <input id="email" type="email" name="email" value=""  />
+                          <input id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail} />
                         </div>
                         <div className="pure-control-group">
                           <label htmlFor="senha">Senha</label>
-                          <input id="senha" type="password" name="senha"  />
+                          <input id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha} />
                         </div>
                         <div className="pure-control-group">
                           <label></label>
@@ -88,6 +136,7 @@ class App extends Component {
                           {
                             this.state.lista.map(function(autor){
                               return (
+                                // A fim de otimizar a performance, deve-se setar um identificador em cada elemento
                                 <tr key={autor.id}>
                                   <td>{autor.nome}</td>
                                   <td>{autor.email}</td>
