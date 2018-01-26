@@ -2,7 +2,46 @@ import React, { Component } from 'react'
 import $ from 'jquery'
 import InputCustomizado from './components/InputCustomizado'
 
-export class FormularioAutor extends Component{
+export default class AutorBox extends Component {
+
+  constructor() {
+    super();
+    this.atualizaListagem = this.atualizaListagem.bind(this)
+    // Propriedade state eh diponibilizada pelo proprio react
+    this.state = {
+      lista : [],
+    };
+  }
+
+  // Hook disparado logo apos montar o componente
+  componentDidMount(){
+    $.ajax({
+        // Servidor remoto onde se encontra o backend
+        url:"http://cdc-react.herokuapp.com/api/autores",
+        dataType: 'json',
+        success:function(resposta){
+          // Para atualizar a propriedade dinamicamente
+          this.setState({lista:resposta});
+        }.bind(this) // Setando o scopo para o react inves do jquery
+      }
+    );
+  }
+
+  atualizaListagem(novaLista) {
+    this.setState({lista: novaLista})
+  }
+
+  render() {
+    return (
+      <div>
+        <FormularioAutor cbAtualizaListagem={this.atualizaListagem}/>
+        <TabelaAutores lista={this.state.lista}/>
+      </div>
+    )
+  }
+}
+
+class FormularioAutor extends Component{
   constructor() {
     super();
     // Setando o escopo do react para a funcao
@@ -48,7 +87,7 @@ export class FormularioAutor extends Component{
       type: 'post',
       data: JSON.stringify({nome: state.nome, email: state.email, senha: state.senha}),
       success: (resposta) => {
-        this.setState({lista: resposta})
+        this.props.cbAtualizaListagem(resposta)
       },
       error: (error) => {
         console.log('Enviado com erro');
@@ -72,30 +111,7 @@ export class FormularioAutor extends Component{
   }
 }
 
-export class TabelaAutores extends Component {
-
-  constructor() {
-    super();
-    // Propriedade state eh diponibilizada pelo proprio react
-    this.state = {
-      lista : [],
-    };
-  }
-
-  // Hook disparado logo apos montar o componente
-  componentDidMount(){
-    $.ajax({
-        // Servidor remoto onde se encontra o backend
-        url:"http://cdc-react.herokuapp.com/api/autores",
-        dataType: 'json',
-        success:function(resposta){
-          // Para atualizar a propriedade dinamicamente
-          this.setState({lista:resposta});
-        }.bind(this) // Setando o scopo para o react inves do jquery
-      }
-    );
-  }
-
+class TabelaAutores extends Component {
   render() {
     return (
       <table className="pure-table">
@@ -107,7 +123,7 @@ export class TabelaAutores extends Component {
         </thead>
         <tbody>
           {
-            this.state.lista.map(function(autor){
+            this.props.lista.map(function(autor){
               return (
                 // A fim de otimizar a performance, deve-se setar um identificador em cada elemento
                 <tr key={autor.id}>
