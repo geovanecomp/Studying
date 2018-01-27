@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 import InputCustomizado from './components/InputCustomizado'
+// Lib de publish e subscribe
+import PubSub from 'pubsub-js'
+import Erro from './Erro'
 
 export default class AutorBox extends Component {
 
   constructor() {
     super();
-    this.atualizaListagem = this.atualizaListagem.bind(this)
     // Propriedade state eh diponibilizada pelo proprio react
     this.state = {
       lista : [],
@@ -25,16 +27,16 @@ export default class AutorBox extends Component {
         }.bind(this) // Setando o scopo para o react inves do jquery
       }
     );
-  }
 
-  atualizaListagem(novaLista) {
-    this.setState({lista: novaLista})
+    PubSub.subscribe('atualizar-listagem-autores', (topico, novaLista) => {
+      this.setState({lista: novaLista})
+    })
   }
 
   render() {
     return (
       <div>
-        <FormularioAutor cbAtualizaListagem={this.atualizaListagem}/>
+        <FormularioAutor/>
         <TabelaAutores lista={this.state.lista}/>
       </div>
     )
@@ -86,11 +88,19 @@ class FormularioAutor extends Component{
       dataType: 'json',
       type: 'post',
       data: JSON.stringify({nome: state.nome, email: state.email, senha: state.senha}),
-      success: (resposta) => {
-        this.props.cbAtualizaListagem(resposta)
+      success: (novaListagem) => {
+        this.setState({nome: '', email: '', senha: ''})
+        // Params: Topico para todos ouvirem, o que sera escutado
+        PubSub.publish('atualizar-listagem-autores', novaListagem)
       },
       error: (error) => {
+        if (error.status === 400) {
+          new Erro().publicarErros(error.responseJSON)
+        }
         console.log('Enviado com erro');
+      },
+      beforeSend: () => {
+        PubSub.publish('limpa-erros', {})
       }
     })
   }

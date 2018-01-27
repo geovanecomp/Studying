@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './css/pure-min.css';
 import './css/side-menu.css';
-import $ from 'jquery';
-import InputCustomizado from './components/InputCustomizado'
 import AutorBox from './Autor'
 class App extends Component {
 
