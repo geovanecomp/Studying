@@ -10,7 +10,6 @@
             <td>{{ game.fields.titulo }}</td>
             <td>{{ game.fields.plataformas }}</td>
           </tr>
-        {% endfor %}
       </tbody>
     </table>
 
