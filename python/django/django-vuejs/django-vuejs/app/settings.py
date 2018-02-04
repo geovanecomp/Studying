@@ -139,4 +139,8 @@ STATICFILES_DIRS = [
 
 # Setting free all external request. This is not a good practice but for the test
 # I want to focus in others things.
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
+)
