@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <p>To access the API Restful Documentation, please access:</p>
+    <a href="http://localhost:8000/api">API</a>
     <div class="container">
       <table class="table">
         <thead>

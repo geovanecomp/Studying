@@ -21,6 +21,6 @@ router = routers.DefaultRouter()
 router.register('games_api', views.GamesViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
-    # path('', include('homepage.urls')),
+    path('api', include(router.urls)),
+    path('', include('homepage.urls'))
 ]
