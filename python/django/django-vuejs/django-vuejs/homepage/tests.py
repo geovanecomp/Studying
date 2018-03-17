@@ -10,4 +10,5 @@ class GamesTestCase(TestCase):
         """All games must have the title information"""
 
         game1 = Games.objects.get(titulo='test_title')
-        self.hasattr(game1, 'titulo')
+        # self.hasattr(game1, 'titulo')
+        self.assertTrue(False)
