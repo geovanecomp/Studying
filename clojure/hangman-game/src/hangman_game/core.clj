@@ -4,13 +4,25 @@
 (def number-of-lives 6)
 
 (defn lose [] (print "You lose"))
+(defn win [] (print "You win"))
 
-(defn game [lives]
+(defn missing-letters [word hits]
+  (remove (fn [letter] (contains? hits (str letter))) word)
+)
+
+(defn correct-word? [word hits]
+  (empty? (missing-letters word hits))
+)
+
+(defn game [lives word hits]
   (if (= lives 0)
     (lose)
-    (do
-        (print lives)
-        (game (dec lives))
+    (if (correct-word? word hits)
+      (win)
+      (print "Guess the letter")
+      ; (do
+      ;     (print lives)
+      ;     (game (dec lives))
     )
   )
 )
