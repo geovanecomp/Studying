@@ -1,4 +1,4 @@
-require 'bowling'
+require_relative '../app/bowling'
 
 RSpec.describe Bowling, "#score" do
   context "with no strikes or spares" do
