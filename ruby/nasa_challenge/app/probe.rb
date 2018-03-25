@@ -1,65 +1,87 @@
 require_relative './direction'
 
 class Probe
-  attr_accessor :positionX, :positionY, :direction
+  attr_reader :next_position_x, :next_position_y, :next_direction, :position_x, :position_y, :direction
 
-  def initialize (positionX, positionY, direction)
-    @positionX = positionX
-    @positionY = positionY
+  # The next position will be used to check colision / valid position
+  def initialize (position_x, position_y, direction)
+    @position_x = position_x
+    @position_y = position_y
     @direction = direction
-
+    @next_position_x = position_x
+    @next_position_y = position_y
+    @next_direction = direction
   end
 
   def print_status ()
-    print "Position: ", @positionX, " ", @positionY, " ",  @direction, "\n"
+    print "Position: ", @position_x, " ", @position_y, " ",  @direction, "\n"
   end
 
   def print_final_position ()
-    puts @positionX, " ", @positionY, " ",  @direction
+    print @position_x, " ", @position_y, " ",  @direction, "\n"
   end
 
   def move (command)
     upperCommand = command.upcase
-    turn_left if upperCommand == 'L'
-    turn_right if upperCommand == 'R'
+    @direction = turn_left if upperCommand == 'L'
+    @direction = turn_right if upperCommand == 'R'
     walk if upperCommand == 'M'
   end
 
-  private
+  # Simulate if the next position will be valid or not
+  def simulate (command)
+    upperCommand = command.upcase
+    @next_direction = turn_left if upperCommand == 'L'
+    @next_direction = turn_right if upperCommand == 'R'
+    simulate_walk if upperCommand == 'M'
+  end
 
+  private
   def turn_left ()
     if @direction == Direction::N
-      @direction = Direction::W
+      Direction::W
     elsif @direction == Direction::E
-      @direction = Direction::N
+      Direction::N
     elsif @direction == Direction::S
-      @direction = Direction::E
+      Direction::E
     elsif @direction == Direction::W
-      @direction = Direction::S
+      Direction::S
     end
   end
 
   def turn_right ()
     if @direction == Direction::N
-      @direction = Direction::E
+      Direction::E
     elsif @direction == Direction::E
-      @direction = Direction::S
+      Direction::S
     elsif @direction == Direction::S
-      @direction = Direction::W
+      Direction::W
     elsif @direction == Direction::W
-      @direction = Direction::N
+      Direction::N
     end
   end
 
   def walk ()
     if @direction == Direction::N
-      @positionY += 1
+      @position_y += 1
     elsif @direction == Direction::E
-      @positionX += 1
+      @position_x += 1
     elsif @direction == Direction::S
-      @positionY -= 1
+      @position_y -= 1
     elsif @direction == Direction::W
-      @positionX -= 1
+      @position_x -= 1
+    end
+  end
+
+  def simulate_walk ()
+    if @direction == Direction::N
+      @next_position_y += 1
+    elsif @direction == Direction::E
+      @next_position_x += 1
+    elsif @direction == Direction::S
+      @next_position_y -= 1
+    elsif @direction == Direction::W
+      @next_position_x -= 1
     end
   end
 end
