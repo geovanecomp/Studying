@@ -1,21 +1,7 @@
 require_relative './plateau'
 require_relative './probe'
 require_relative './direction'
-
-# For matrix, the first position is the top left corner instead the bottom left.
-def adjust_cordinate_y (probe_position_y, plateau_len_y)
-  # Matrix is from 0 until len_y
-  plateau_len_y -= plateau_len_y
-
-  return plateau_len_y - probe_position_y
-end
-
-def is_valid_position (probe_position_x, probe_position_y, plateau_len_x, plateau_len_y)
-  if probe_position_x > plateau_len_x or probe_position_y > plateau_len_y
-    return false
-  end
-  return true
-end
+require_relative './helper'
 
 def move (commands, probe, plateau)
   puts "The moviments are: "
@@ -30,7 +16,7 @@ def main ()
   plateau_len_x = 5
   plateau_len_y = 5
 
-  probe1_position_x = 1
+  probe1_position_x = 80
   probe1_position_y = 2
   probe1_direction = Direction::N
   probe1_commands = 'LMLMLMLMM'
