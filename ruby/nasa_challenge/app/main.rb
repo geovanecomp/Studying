@@ -15,6 +15,7 @@ def move (commands, probe, plateau, should_print=false)
   end
 
   probe.print_status() if should_print
+  return probe
 end
 
 # Setting the system specs
