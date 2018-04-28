@@ -1,11 +1,13 @@
 const path = require('path')
 const babiliPlugin = require('babili-webpack-plugin')
+const webpack = require('webpack')
 
 let plugins = []
 
-// if(process.env.NODE_ENV == 'production') {
-//   plugins.push(new babiliPlugin())
-// }
+if(process.env.NODE_ENV == 'production') {
+  plugins.push(new babiliPlugin())
+  plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+}
 
 module.exports = {
   // setando o arquivo inicial da aplicacao (ponto de entrada da applicacao)
@@ -29,6 +31,10 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css/,
+        loader: 'style-loader!css-loader' // aplica os csss da direita para esquerda
       }
     ]
   },
