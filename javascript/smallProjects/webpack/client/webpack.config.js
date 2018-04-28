@@ -13,7 +13,8 @@ module.exports = {
   // onde vai ser gravado o bundle nofinal resolvido a partir do ponto de entrada
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'dist'
   },
 
   // setando regras / loaders para processar os modulos
