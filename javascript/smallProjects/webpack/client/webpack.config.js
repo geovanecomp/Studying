@@ -9,6 +9,11 @@ if(process.env.NODE_ENV == 'production') {
   plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
 }
 
+plugins.push(new webpack.ProvicePlugin({
+  '$': 'jquery/dist/jquery.js',
+  'jQuery': 'jquery/dist/jquery.js'
+}))
+
 module.exports = {
   // setando o arquivo inicial da aplicacao (ponto de entrada da applicacao)
   entry: './app-src/app.js',
