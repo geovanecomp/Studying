@@ -7,23 +7,24 @@ export default class InputCustomizado extends Component {
     super()
     this.state = {msgErro: ''}
   }
+  // Por apenas repassasar caracteristicas padrao, posso apenas repassar com spread operator
   render() {
     return(
       <div className="pure-control-group">
 
         <label htmlFor={this.props.id}>{this.props.label}</label>
-        <input id={this.props.id} type={this.props.type} name={this.props.name} value={this.props.value}  onChange={this.props.onChange}/>
+        <input {...this.props}/>
         <span className="error">{this.state.msgErro}</span>
       </div>
     )
   }
 
-  // TODO: Corrigir bug ao acessar this.props
+  // TODO: Corrigir bug ao acessar this.props.name
   componentDidMount() {
     PubSub.subscribe("erro-validacao", (topico, erro) => {
-      if (erro.field == this.props.id){
+      if (erro.field === this.props.id){
         this.setState({msgErro:erro.defaultMessage});
-      }      
+      }
     })
 
     PubSub.subscribe("limpa-erros", (topico) => {

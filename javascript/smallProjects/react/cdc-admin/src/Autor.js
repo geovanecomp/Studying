@@ -36,8 +36,13 @@ export default class AutorBox extends Component {
   render() {
     return (
       <div>
-        <FormularioAutor/>
-        <TabelaAutores lista={this.state.lista}/>
+        <div className="header">
+          <h1>Bem vindo ao cadastro de autores</h1>
+        </div>
+        <div className="content" id="content">
+          <FormularioAutor/>
+          <TabelaAutores lista={this.state.lista}/>
+        </div>
       </div>
     )
   }
@@ -48,9 +53,8 @@ class FormularioAutor extends Component{
     super();
     // Setando o escopo do react para a funcao
     this.submeterForm = this.submeterForm.bind(this)
-    this.setNome = this.setNome.bind(this)
-    this.setEmail = this.setEmail.bind(this)
-    this.setSenha = this.setSenha.bind(this)
+    // this.atualizaState = this.atualizaState.bind(thiys)
+
     // Propriedade state eh diponibilizada pelo proprio react
     this.state = {
       nome: '',
@@ -63,9 +67,9 @@ class FormularioAutor extends Component{
     return(
       <div className="pure-form pure-form-aligned">
         <form className="pure-form pure-form-aligned" onSubmit={this.submeterForm} >
-          <InputCustomizado id="nome" label="Nome" type="text" value={this.state.nome} onChange={this.setNome}></InputCustomizado>
-          <InputCustomizado id="email" label="Email" type="email" value={this.state.email} onChange={this.setEmail}></InputCustomizado>
-          <InputCustomizado id="senha" label="Senha" type="password" value={this.state.senha} onChange={this.setSenha}></InputCustomizado>
+          <InputCustomizado id="nome" label="Nome" type="text" value={this.state.nome} onChange={this.atualizaState.bind(this, 'nome')}></InputCustomizado>
+          <InputCustomizado id="email" label="Email" type="email" value={this.state.email} onChange={this.atualizaState.bind(this, 'email')}></InputCustomizado>
+          <InputCustomizado id="senha" label="Senha" type="password" value={this.state.senha} onChange={this.atualizaState.bind(this, 'senha')}></InputCustomizado>
 
           <div className="pure-control-group">
             <label></label>
@@ -105,19 +109,8 @@ class FormularioAutor extends Component{
     })
   }
 
-  setNome(evento) {
-    this.setState({nome: evento.target.value})
-    // this.setState({form: {nome: evento.target.value}})
-  }
-
-  setEmail(evento) {
-    this.setState({email: evento.target.value})
-    // this.setState({form: {email: evento.target.value}})
-  }
-
-  setSenha(evento) {
-    this.setState({senha: evento.target.value})
-    // this.setState({form: {senha: evento.target.value}})
+  atualizaState(nomeInput, evento) {
+    this.setState({[nomeInput]: evento.target.value})
   }
 }
 
