@@ -4,15 +4,23 @@ const webpack = require('webpack')
 
 let plugins = []
 
+let SERVICE_URL = JSON.stringify('http://localhost:3000')
+
 if(process.env.NODE_ENV == 'production') {
+  let SERVICE_URL = JSON.stringify("http://some-address")
+
   plugins.push(new babiliPlugin())
+  // Para otimizar o processo de build do webpack
   plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
 }
 
-plugins.push(new webpack.ProvicePlugin({
+// Adicionando plugins externos, como jquery
+plugins.push(new webpack.ProvidePlugin({
   '$': 'jquery/dist/jquery.js',
   'jQuery': 'jquery/dist/jquery.js'
 }))
+
+plugins.push(new webpack.DefinePlugin({ SERVICE_URL }))
 
 module.exports = {
   // setando o arquivo inicial da aplicacao (ponto de entrada da applicacao)

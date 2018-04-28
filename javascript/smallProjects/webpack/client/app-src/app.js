@@ -14,5 +14,5 @@ const config = {
     body
 };
 
-fetch('/negociacoes', config)
+fetch(`${SERVICE_URL}/negociacoes`, config)
     .then(() => console.log('Dado enviado com sucesso'));
