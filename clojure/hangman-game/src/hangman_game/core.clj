@@ -1,6 +1,6 @@
 (ns hangman-game.core
   (:gen-class))
-
+ 
 (def number-of-lives 6)
 (def secret-word "RICE")
 
