@@ -2,9 +2,10 @@
   (:gen-class))
 
 (def number-of-lives 6)
+(def secret-word "RICE")
 
-(defn lose [] (print "You lose"))
-(defn win [] (print "You win"))
+(defn lose [] (println "You lose"))
+(defn win [] (println "You win"))
 
 (defn missing-letters [word hits]
   (remove (fn [letter] (contains? hits (str letter))) word)
@@ -26,7 +27,18 @@
   (empty? (missing-letters word hits))
 )
 
+(defn print-game-info [lives word hits]
+  (println "Lives " lives)
+  (doseq [letter (seq word)]
+    (if (contains? hits (str letter))
+      (print letter " ")
+      (print "_" " ")
+    ))
+  (println)
+)
+
 (defn game [lives word hits]
+  (print-game-info lives word hits)
   (cond
     (= lives 0) (lose)
     (correct-word? word hits) (win)
@@ -47,7 +59,11 @@
   )
 )
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+(defn start-game []
+  (game number-of-lives secret-word #{})
+)
+
+(defn -main [& args]
+  "The awesome Hangman game"
+  (start-game)
+)
